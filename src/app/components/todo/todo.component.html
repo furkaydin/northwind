@@ -1,0 +1,21 @@
+<table class="table" *ngIf="disabled==false" >
+    <thead>
+      <tr>
+          <th>Kullanıcı Id</th>
+          <th>Id</th>
+          <th>Başlık</th>
+          <th>Durumu</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let todo of todos">
+      <td>{{ todo.userId }}</td>
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.title }}</td>
+      <ng-container *ngIf="!todo.completed; else completedTodo">
+        <button type="button" class="btn btn-danger">{{ todo.completed }}</button>
+      </ng-container>
+      <ng-template #completedTodo>
+        <button type="button" class="btn btn-success">{{ todo.completed }}</button>
+      </ng-template>
+    </tr>
+  </table>
