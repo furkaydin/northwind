@@ -12,11 +12,26 @@ export class CategoryComponent implements OnInit{
 ngOnInit(): void {
   this.getCategories();
 }
-categories : Category[]=[];
 
+categories : Category[]=[];
+currentCategory : Category;
 getCategories(){
 this.categoryService.getCategories().subscribe(response=>{
   this.categories= response.data;
 })
+}
+
+setCurrentCategory(category:Category)
+{
+this.currentCategory = category;
+}
+
+getCurrentCategoryClass(category:Category)
+{
+  if(category == this.currentCategory){
+    return "list-group-item active"
+  }else {
+    return "list-group-item"
+  }
 }
 }
